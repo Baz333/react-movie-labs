@@ -38,6 +38,7 @@ export default function FilterMoviesCard(props) {
 
     const handleChange = (e, type, value) => {
         e.preventDefault()
+        props.onUserInput(type, value)
     }
 
     const handleTextChange = e => {
@@ -76,7 +77,7 @@ export default function FilterMoviesCard(props) {
                         id="genre-select"
                         defaultValue=""
                         value={props.genreFilter}
-                        onChange={props.handleGenreChange}
+                        onChange={handleGenreChange}
                     >
                         {genres.map((genre) => {
                             return (
