@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {getGenres} from "../../api/tmdb-api";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -10,7 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg';
-import { Menu } from "@mui/material";
+import { Menu, alertClasses } from "@mui/material";
 
 const formControl = {
     margin: 1,
@@ -23,17 +24,9 @@ export default function FilterMoviesCard(props) {
     const [genres, setGenres] = useState([{id:'0', name:"All"}])
 
     useEffect(() => {
-        fetch(
-            "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
-            process.env.REACT_APP_TMDB_KEY
-        )
-            .then(res => res.json())
-            .then(json => {
-                return json.genres;
-            })
-            .then(apiGenres => {
-                setGenres([genres[0], ...apiGenres]);
-            });
+        getGenres().then((allGenres) => {
+            setGenres([genres[0], ...allGenres]);
+        });
     }, []);
 
     const handleChange = (e, type, value) => {
