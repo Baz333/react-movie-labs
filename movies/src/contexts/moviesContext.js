@@ -33,6 +33,7 @@ const MoviesContextProvider = (props) => {
             newWatchlist = [...watchlist];
         }
         setWatchlist(newWatchlist);
+        console.log(newWatchlist);
     }
 
     const addReview = (movie, review) => {

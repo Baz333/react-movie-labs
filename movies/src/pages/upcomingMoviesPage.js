@@ -17,7 +17,6 @@ const UpcomingMoviesPage = (props) => {
     }
 
     const movies = data.results;
-    console.log("Movies: ", movies);
     
     return (
         <PageTemplate
